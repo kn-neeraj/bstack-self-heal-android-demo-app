@@ -43,6 +43,10 @@ This app is designed specifically to showcase how BrowserStack's Self-Healing ag
 - **Real-time Switching**: Changes all element testTags when toggled
 - **Original Mode**: Elements have standard identifiers (e.g., `sign_in_button`, `email_input`)
 - **Demo Mode Active**: Elements get alternate identifiers (e.g., `sign_in_button_demo`, `email_input_demo`)
+- **Visual Indicators**: When demo mode is enabled, the login screen shows:
+  - An orange banner stating "Self-Heal mode active - Elements are modified"
+  - Individual notifications for each changed element showing the ID transformation
+  - Example: "Healing Demo: Email element Id changed from 'email_input' to 'email_input_demo'"
 
 This simulates a scenario where developers rename element IDs, which would normally break automated tests. The Self-Healing agent can detect these changes and update test scripts automatically.
 
