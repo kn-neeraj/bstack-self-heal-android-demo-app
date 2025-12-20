@@ -1,5 +1,7 @@
 package com.example.self_healdemoapplication.data
 
+import com.example.self_healdemoapplication.R
+
 data class Product(
     val id: Int,
     val name: String,
@@ -26,7 +28,7 @@ object ProductsData {
             rating = 4.5f,
             reviewCount = 289,
             description = "Google Pixel 4 with Smartphone 64GB, 5.7-inch OLED display, 16MP Dual Camera, and 6GB RAM",
-            imageResId = null
+            imageResId = R.drawable.google_pixel_4
         ),
         Product(
             id = 2,
@@ -36,7 +38,7 @@ object ProductsData {
             rating = 4.7f,
             reviewCount = 512,
             description = "Apple iPhone 11 with A13 Bionic chip, 6.1-inch Liquid Retina HD display, Dual 12MP cameras",
-            imageResId = null
+            imageResId = R.drawable.iphone_11
         ),
         Product(
             id = 3,
@@ -46,7 +48,7 @@ object ProductsData {
             rating = 4.8f,
             reviewCount = 673,
             description = "Apple iPhone 12 Pro with A14 Bionic chip, 6.1-inch Super Retina XDR display, Pro camera system",
-            imageResId = null
+            imageResId = R.drawable.iphone_12_pro
         ),
         Product(
             id = 4,
@@ -56,7 +58,7 @@ object ProductsData {
             rating = 4.6f,
             reviewCount = 401,
             description = "Samsung Galaxy Note 20 with Snapdragon 865+, 6.7-inch Dynamic AMLOED display, S Pen included",
-            imageResId = null
+            imageResId = R.drawable.samsung_galaxy_note_20
         ),
         Product(
             id = 5,
@@ -66,7 +68,7 @@ object ProductsData {
             rating = 4.4f,
             reviewCount = 325,
             description = "OnePlus 6T with Snapdragon 845, 6.41-inch Optic AMOLED display, In-display fingerprint sensor",
-            imageResId = null
+            imageResId = R.drawable.oneplus_6t
         ),
         Product(
             id = 6,
@@ -76,7 +78,7 @@ object ProductsData {
             rating = 4.5f,
             reviewCount = 298,
             description = "OnePlus 8 with Snapdragon 865, 6.55-inch Fluid AMOLED display, 48MP Triple camera setup",
-            imageResId = null
+            imageResId = R.drawable.oneplus_8
         )
     )
 }
