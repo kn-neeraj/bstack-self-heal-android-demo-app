@@ -11,3 +11,7 @@ val Black = Color(0xFF000000)
 val Gray = Color(0xFF757575)
 val LightGray = Color(0xFFE0E0E0)
 val PlatformBlue = Color(0xFF2196F3)
+
+// Platform-specific colors
+val AndroidGreen = Color(0xFF4CAF50)
+val IOSBlue = Color(0xFF007AFF)

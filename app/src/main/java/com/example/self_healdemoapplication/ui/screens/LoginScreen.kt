@@ -2,7 +2,9 @@ package com.example.self_healdemoapplication.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -40,13 +42,15 @@ fun LoginScreen(
         Card(
             modifier = Modifier
                 .padding(24.dp)
-                .widthIn(max = 400.dp),
+                .widthIn(max = 400.dp)
+                .fillMaxHeight(0.95f),
             shape = RoundedCornerShape(12.dp),
             colors = CardDefaults.cardColors(containerColor = White),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {
             Column(
                 modifier = Modifier
+                    .verticalScroll(rememberScrollState())
                     .padding(32.dp)
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,

@@ -1,5 +1,6 @@
 package com.example.self_healdemoapplication.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -110,7 +111,7 @@ fun ProductsHomeScreen(
             )
 
             // Search Bar
-            OutlinedTextField(
+            TextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search products...") },
@@ -121,10 +122,10 @@ fun ProductsHomeScreen(
                     )
                 },
                 singleLine = true,
-                shape = RoundedCornerShape(8.dp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedBorderColor = LightGray,
-                    focusedBorderColor = DarkNavy,
+                shape = RoundedCornerShape(12.dp),
+                colors = TextFieldDefaults.colors(
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
                     unfocusedContainerColor = White,
                     focusedContainerColor = White
                 ),
@@ -163,12 +164,12 @@ fun ProductCard(
             .testTag(
                 if (isDemoMode) "product_card_${product.id}_demo" else "product_card_${product.id}"
             ),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(20.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -178,25 +179,27 @@ fun ProductCard(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = product.name,
-                        fontSize = 20.sp,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                         color = Black,
                         modifier = Modifier.testTag("product_name_${product.id}")
                     )
 
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(6.dp))
 
                     // Platform Badge
                     Surface(
-                        color = PlatformBlue,
-                        shape = RoundedCornerShape(4.dp),
-                        modifier = Modifier.testTag("product_platform_${product.id}")
+                        color = if (product.platform == com.example.self_healdemoapplication.data.Platform.ANDROID) AndroidGreen else IOSBlue,
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.testTag("product_platform_${product.id}"),
+                        shadowElevation = 1.dp
                     ) {
                         Text(
                             text = product.platform.displayName,
                             color = White,
                             fontSize = 12.sp,
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                            fontWeight = FontWeight.Medium,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
                         )
                     }
                 }
@@ -262,7 +265,7 @@ fun ProductCard(
             // Price
             Text(
                 text = "$${String.format("%.2f", product.price)}",
-                fontSize = 24.sp,
+                fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
                 color = Black,
                 modifier = Modifier.testTag("product_price_${product.id}")
@@ -279,42 +282,44 @@ fun ProductCard(
                 // Quantity Selector
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.testTag("quantity_selector_${product.id}")
                 ) {
-                    Button(
+                    OutlinedButton(
                         onClick = { if (quantity > 1) quantity-- },
                         modifier = Modifier
                             .size(40.dp)
                             .testTag("quantity_decrease_${product.id}"),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = LightGray,
-                            contentColor = Black
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            contentColor = DarkNavy
                         ),
+                        border = BorderStroke(1.dp, DarkNavy.copy(alpha = 0.3f)),
+                        shape = RoundedCornerShape(8.dp),
                         contentPadding = PaddingValues(0.dp)
                     ) {
-                        Text("-", fontSize = 20.sp)
+                        Text("-", fontSize = 20.sp, fontWeight = FontWeight.Medium)
                     }
 
                     Text(
                         text = quantity.toString(),
                         fontSize = 18.sp,
-                        fontWeight = FontWeight.Medium,
+                        fontWeight = FontWeight.SemiBold,
                         modifier = Modifier.testTag("quantity_value_${product.id}")
                     )
 
-                    Button(
+                    OutlinedButton(
                         onClick = { quantity++ },
                         modifier = Modifier
                             .size(40.dp)
                             .testTag("quantity_increase_${product.id}"),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = LightGray,
-                            contentColor = Black
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            contentColor = DarkNavy
                         ),
+                        border = BorderStroke(1.dp, DarkNavy.copy(alpha = 0.3f)),
+                        shape = RoundedCornerShape(8.dp),
                         contentPadding = PaddingValues(0.dp)
                     ) {
-                        Text("+", fontSize = 20.sp)
+                        Text("+", fontSize = 20.sp, fontWeight = FontWeight.Medium)
                     }
                 }
 
@@ -327,12 +332,17 @@ fun ProductCard(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = DarkNavy
                     ),
-                    shape = RoundedCornerShape(8.dp)
+                    shape = RoundedCornerShape(12.dp),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 4.dp,
+                        pressedElevation = 8.dp
+                    ),
+                    contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp)
                 ) {
                     Text(
                         text = "Add to Cart",
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.SemiBold
                     )
                 }
             }
