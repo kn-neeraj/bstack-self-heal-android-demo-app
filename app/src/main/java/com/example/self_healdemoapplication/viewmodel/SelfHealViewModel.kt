@@ -8,6 +8,7 @@ enum class HealingElement {
     SELECT_USER,
     EMAIL,
     PASSWORD,
+    SIGN_IN,
     ALL,
     NONE
 }
@@ -16,7 +17,7 @@ class SelfHealViewModel : ViewModel() {
     private val _isDemoModeEnabled = MutableLiveData(false)
     val isDemoModeEnabled: LiveData<Boolean> = _isDemoModeEnabled
 
-    private val _healingElement = MutableLiveData(HealingElement.SELECT_USER)
+    private val _healingElement = MutableLiveData(HealingElement.SIGN_IN)
     val healingElement: LiveData<HealingElement> = _healingElement
 
     fun toggleDemoMode() {

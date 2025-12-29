@@ -81,16 +81,7 @@ class LoginFragment : Fragment() {
 
     private fun updateElementIds(isDemoMode: Boolean) {
         // Update IDs for Appium to find
-        ViewCompat.setAccessibilityDelegate(binding.userDropdown, null)
-        binding.userDropdown.id = if (isDemoMode) {
-            View.generateViewId()
-        } else {
-            R.id.user_dropdown
-        }
-        ViewCompat.setAccessibilityPaneTitle(
-            binding.userDropdown,
-            if (isDemoMode) "user_dropdown_modified" else "user_dropdown"
-        )
+        // Dropdown ID remains unchanged to keep it stable for Appium tests
 
         binding.emailInput.id = if (isDemoMode) {
             View.generateViewId()
@@ -139,6 +130,10 @@ class LoginFragment : Fragment() {
 
         binding.passwordHealingNotification.visibility =
             if (isDemoMode && (element == HealingElement.PASSWORD || element == HealingElement.ALL))
+                View.VISIBLE else View.GONE
+
+        binding.signInHealingNotification.visibility =
+            if (isDemoMode && (element == HealingElement.SIGN_IN || element == HealingElement.ALL))
                 View.VISIBLE else View.GONE
     }
 

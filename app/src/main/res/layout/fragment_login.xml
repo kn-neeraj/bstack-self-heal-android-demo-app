@@ -212,6 +212,27 @@
                     android:layout_height="24dp" />
 
                 <!-- Sign In Button -->
+                <!-- Healing Notification for Sign In Button -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/sign_in_healing_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="#FFF8E1"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Self-Heal mode active: Element Id changed to 'sign_in_button_modified'"
+                        android:textColor="#F57C00"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+
                 <Button
                     android:id="@+id/sign_in_button"
                     android:layout_width="match_parent"
