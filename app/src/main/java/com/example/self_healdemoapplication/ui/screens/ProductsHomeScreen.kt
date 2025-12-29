@@ -56,7 +56,7 @@ fun ProductsHomeScreen(
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .testTag(if (isDemoMode) "navigation_bar_demo" else "navigation_bar"),
+                .testTag(if (isDemoMode) "navigation_bar_modified" else "navigation_bar"),
             color = DarkNavy,
             shadowElevation = 4.dp
         ) {
@@ -83,7 +83,7 @@ fun ProductsHomeScreen(
                 IconButton(
                     onClick = onLogout,
                     modifier = Modifier.testTag(
-                        if (isDemoMode) "logout_button_demo" else "logout_button"
+                        if (isDemoMode) "logout_button_modified" else "logout_button"
                     )
                 ) {
                     Icon(
@@ -132,14 +132,14 @@ fun ProductsHomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
-                    .testTag(if (isDemoMode) "search_bar_demo" else "search_bar")
+                    .testTag(if (isDemoMode) "search_bar_modified" else "search_bar")
             )
 
             // Products List
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier.testTag(
-                    if (isDemoMode) "products_list_demo" else "products_list"
+                    if (isDemoMode) "products_list_modified" else "products_list"
                 )
             ) {
                 items(filteredProducts) { product ->
@@ -162,7 +162,7 @@ fun ProductCard(
         modifier = modifier
             .fillMaxWidth()
             .testTag(
-                if (isDemoMode) "product_card_${product.id}_demo" else "product_card_${product.id}"
+                if (isDemoMode) "product_card_${product.id}_modified" else "product_card_${product.id}"
             ),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = White),
@@ -327,7 +327,7 @@ fun ProductCard(
                 Button(
                     onClick = { /* Add to cart logic */ },
                     modifier = Modifier.testTag(
-                        if (isDemoMode) "add_to_cart_${product.id}_demo" else "add_to_cart_${product.id}"
+                        if (isDemoMode) "add_to_cart_${product.id}_modified" else "add_to_cart_${product.id}"
                     ),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = DarkNavy

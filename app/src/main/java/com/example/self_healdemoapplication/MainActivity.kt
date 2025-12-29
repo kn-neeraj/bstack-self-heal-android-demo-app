@@ -20,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.self_healdemoapplication.ui.screens.LoginScreen
 import com.example.self_healdemoapplication.ui.screens.ProductsHomeScreen
 import com.example.self_healdemoapplication.ui.theme.*
+import com.example.self_healdemoapplication.viewmodel.HealingElement
 import com.example.self_healdemoapplication.viewmodel.SelfHealViewModel
 
 class MainActivity : ComponentActivity() {
@@ -40,9 +41,15 @@ fun SelfHealDemoApp(viewModel: SelfHealViewModel = viewModel()) {
     var isLoggedIn by rememberSaveable { mutableStateOf(false) }
     val isDemoMode by viewModel.isDemoModeEnabled.collectAsState()
 
+    // Set healing element to SELECT_USER only
+    LaunchedEffect(Unit) {
+        viewModel.setHealingElement(HealingElement.SELECT_USER)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .statusBarsPadding()
             .semantics {
                 // Enable testTags as resource IDs for Appium UiAutomator2
                 testTagsAsResourceId = true
@@ -65,7 +72,7 @@ fun SelfHealDemoApp(viewModel: SelfHealViewModel = viewModel()) {
             ) {
                 Column {
                     Text(
-                        text = "Self-Heal Demo Mode",
+                        text = "Self-Heal Mode",
                         color = White,
                         fontSize = 14.sp
                     )

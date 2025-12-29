@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.self_healdemoapplication.data.DemoUsers
 import com.example.self_healdemoapplication.ui.theme.*
+import com.example.self_healdemoapplication.viewmodel.HealingElement
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +28,7 @@ fun LoginScreen(
     modifier: Modifier = Modifier
 ) {
     val isDemoMode by viewModel.isDemoModeEnabled.collectAsState()
+    val healingElement by viewModel.healingElement.collectAsState()
     var selectedUserEmail by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -111,8 +113,8 @@ fun LoginScreen(
                         modifier = Modifier.padding(bottom = 4.dp)
                     )
 
-                    // Healing Demo notification for dropdown
-                    if (isDemoMode) {
+                    // Healing notification for dropdown
+                    if (isDemoMode && (healingElement == HealingElement.SELECT_USER || healingElement == HealingElement.ALL)) {
                         Surface(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -121,7 +123,7 @@ fun LoginScreen(
                             shape = RoundedCornerShape(6.dp)
                         ) {
                             Text(
-                                text = "Healing Demo: Select-User element Id changed from 'user_dropdown' to 'user_dropdown_demo'",
+                                text = "Self-Heal mode active: Element Id changed to 'user_dropdown_modified'",
                                 fontSize = 12.sp,
                                 color = Color(0xFFF57C00),
                                 modifier = Modifier.padding(8.dp),
@@ -134,7 +136,7 @@ fun LoginScreen(
                         expanded = expanded,
                         onExpandedChange = { expanded = !expanded },
                         modifier = Modifier.testTag(
-                            if (isDemoMode) "user_dropdown_demo" else "user_dropdown"
+                            if (isDemoMode) "user_dropdown_modified" else "user_dropdown"
                         )
                     ) {
                         OutlinedTextField(
@@ -172,8 +174,8 @@ fun LoginScreen(
 
                 // Email Input
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    // Healing Demo notification for email
-                    if (isDemoMode) {
+                    // Healing notification for email
+                    if (isDemoMode && (healingElement == HealingElement.EMAIL || healingElement == HealingElement.ALL)) {
                         Surface(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -182,7 +184,7 @@ fun LoginScreen(
                             shape = RoundedCornerShape(6.dp)
                         ) {
                             Text(
-                                text = "Healing Demo: Email element Id changed from 'email_input' to 'email_input_demo'",
+                                text = "Self-Heal mode active: Element Id changed to 'email_input_modified'",
                                 fontSize = 12.sp,
                                 color = Color(0xFFF57C00),
                                 modifier = Modifier.padding(8.dp),
@@ -203,14 +205,14 @@ fun LoginScreen(
                         ),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .testTag(if (isDemoMode) "email_input_demo" else "email_input")
+                            .testTag(if (isDemoMode) "email_input_modified" else "email_input")
                     )
                 }
 
                 // Password Input
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    // Healing Demo notification for password
-                    if (isDemoMode) {
+                    // Healing notification for password
+                    if (isDemoMode && (healingElement == HealingElement.PASSWORD || healingElement == HealingElement.ALL)) {
                         Surface(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -219,7 +221,7 @@ fun LoginScreen(
                             shape = RoundedCornerShape(6.dp)
                         ) {
                             Text(
-                                text = "Healing Demo: Password element Id changed from 'password_input' to 'password_input_demo'",
+                                text = "Self-Heal mode active: Element Id changed to 'password_input_modified'",
                                 fontSize = 12.sp,
                                 color = Color(0xFFF57C00),
                                 modifier = Modifier.padding(8.dp),
@@ -239,7 +241,7 @@ fun LoginScreen(
                             TextButton(
                                 onClick = { passwordVisible = !passwordVisible },
                                 modifier = Modifier.testTag(
-                                    if (isDemoMode) "password_toggle_demo" else "password_toggle"
+                                    if (isDemoMode) "password_toggle_modified" else "password_toggle"
                                 )
                             ) {
                                 Text(
@@ -254,7 +256,7 @@ fun LoginScreen(
                         ),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .testTag(if (isDemoMode) "password_input_demo" else "password_input")
+                            .testTag(if (isDemoMode) "password_input_modified" else "password_input")
                     )
                 }
 
@@ -272,7 +274,7 @@ fun LoginScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp)
-                        .testTag(if (isDemoMode) "sign_in_button_demo" else "sign_in_button"),
+                        .testTag(if (isDemoMode) "sign_in_button_modified" else "sign_in_button"),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = DarkNavy
                     ),
