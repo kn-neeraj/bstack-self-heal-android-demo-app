@@ -18,8 +18,7 @@ enum class Platform(val displayName: String) {
     IOS("ios")
 }
 
-object ProductsData {
-    val products = listOf(
+val sampleProducts = listOf(
         Product(
             id = 1,
             name = "Google Pixel 4",
@@ -81,4 +80,3 @@ object ProductsData {
             imageResId = R.drawable.oneplus_8
         )
     )
-}

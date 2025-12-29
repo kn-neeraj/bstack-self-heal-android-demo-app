@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SelfHealDemoApplication" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.SelfHealDemoApplication" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/dark_navy</item>
+        <item name="colorPrimaryDark">@color/dark_navy</item>
+        <item name="colorAccent">@color/orange_accent</item>
+    </style>
 </resources>

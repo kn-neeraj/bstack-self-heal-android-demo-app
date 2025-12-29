@@ -1,9 +1,8 @@
 package com.example.self_healdemoapplication.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 
 enum class HealingElement {
     SELECT_USER,
@@ -14,21 +13,25 @@ enum class HealingElement {
 }
 
 class SelfHealViewModel : ViewModel() {
-    private val _isDemoModeEnabled = MutableStateFlow(false)
-    val isDemoModeEnabled: StateFlow<Boolean> = _isDemoModeEnabled.asStateFlow()
+    private val _isDemoModeEnabled = MutableLiveData(false)
+    val isDemoModeEnabled: LiveData<Boolean> = _isDemoModeEnabled
 
-    private val _healingElement = MutableStateFlow(HealingElement.ALL)
-    val healingElement: StateFlow<HealingElement> = _healingElement.asStateFlow()
+    private val _healingElement = MutableLiveData(HealingElement.SELECT_USER)
+    val healingElement: LiveData<HealingElement> = _healingElement
 
     fun toggleDemoMode() {
-        _isDemoModeEnabled.value = !_isDemoModeEnabled.value
+        _isDemoModeEnabled.value = _isDemoModeEnabled.value?.not() ?: true
     }
 
     fun setHealingElement(element: HealingElement) {
         _healingElement.value = element
     }
 
-    fun getTestTag(originalTag: String, alternateTag: String): String {
-        return if (_isDemoModeEnabled.value) alternateTag else originalTag
+    fun getResourceId(originalId: String, modifiedId: String): String {
+        return if (_isDemoModeEnabled.value == true) modifiedId else originalId
+    }
+
+    fun isDemoMode(): Boolean {
+        return _isDemoModeEnabled.value == true
     }
 }
